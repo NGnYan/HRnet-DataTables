@@ -1,1 +1,1 @@
-export { default as DataTables } from "./src/DataTables.jsx";
+export { default as DataTables } from "./src/DataTable.jsx";

@@ -1,0 +1,21 @@
+table {
+  width: 80%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+th,
+td {
+  padding: 8px 12px;
+}
