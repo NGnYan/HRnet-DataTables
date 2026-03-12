@@ -1,5 +1,6 @@
-import "./DataTable.css";
-import React from "react";
+import "../src/DataTable.css";
+import DataTableHeader from "./components/DataTableHeader";
+import DataTableBody from "./components/DataTableBody";
 
 export function DataTable({
   columns,
@@ -10,6 +11,14 @@ export function DataTable({
   borderColor = "#000000",
   boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.15)",
 }) {
+  if (!columns || columns.length === 0) {
+    return <p>No columns defined.</p>;
+  }
+
+  if (!data || data.length === 0) {
+    return <p>No data available.</p>;
+  }
+
   const borderStyle = `0.5px solid ${borderColor}`;
 
   const getCellStyle = (index, isLastRow = false) => ({
@@ -20,37 +29,23 @@ export function DataTable({
   });
 
   return (
-    <table style={{ fontFamily, border: borderStyle, boxShadow }}>
-      <thead>
-        <tr>
-          {columns.map((col, index) => (
-            <th
-              key={index}
-              style={{
-                ...getCellStyle(index),
-                backgroundColor: headerBgColor,
-                color: headerFontColor,
-              }}
-            >
-              {col.title}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {columns.map((col, colIndex) => (
-              <td
-                key={colIndex}
-                style={getCellStyle(colIndex, rowIndex === data.length - 1)}
-              >
-                {row[col.key] || ""}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+    <table
+      className="datatable"
+      style={{ fontFamily, border: borderStyle, boxShadow }}
+      role="table"
+      aria-label="Data table"
+    >
+      <DataTableHeader
+        columns={columns}
+        getCellStyle={getCellStyle}
+        headerBgColor={headerBgColor}
+        headerFontColor={headerFontColor}
+      />
+      <DataTableBody
+        data={data}
+        columns={columns}
+        getCellStyle={getCellStyle}
+      />
     </table>
   );
 }

@@ -1,4 +1,4 @@
-table {
+.datatable {
   width: 80%;
   border-collapse: separate;
   border-spacing: 0;
@@ -6,16 +6,16 @@ table {
   overflow: hidden;
 }
 
-th {
+.datatable__th {
   text-align: center;
 }
 
-td {
+.datatable__td {
   text-align: left;
   font-size: 0.8rem;
 }
 
-th,
-td {
+.datatable__th,
+.datatable__td {
   padding: 8px 12px;
 }
