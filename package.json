@@ -1,10 +1,24 @@
 {
-  "name": "data-table",
+  "name": "@NGnYan/data-table",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/data-table.umd.js",
   "module": "dist/data-table.es.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/data-table.es.js",
+      "require": "./dist/data-table.umd.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NGnYan/HRnet-DataTables.git"
+  },
+  "homepage": "https://github.com/NGnYan/HRnet-DataTables#readme",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
