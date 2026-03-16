@@ -1,5 +1,5 @@
 {
-  "name": "@NGnYan/data-table",
+  "name": "@ngnyan/data-table",
   "version": "1.0.4",
   "type": "module",
   "main": "dist/data-table.umd.js",
