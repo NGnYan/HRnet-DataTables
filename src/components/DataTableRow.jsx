@@ -1,3 +1,5 @@
+import "./DataTable.css";
+
 import DataTableCell from "./DataTableCell";
 
 function DataTableRow({ row, columns, getCellStyle, isLastRow }) {

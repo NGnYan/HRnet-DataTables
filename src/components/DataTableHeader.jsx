@@ -1,3 +1,5 @@
+import "./DataTable.css";
+
 function DataTableHeader({
   columns,
   getCellStyle,

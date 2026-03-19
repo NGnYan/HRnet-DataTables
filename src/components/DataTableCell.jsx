@@ -1,3 +1,5 @@
+import "./DataTable.css";
+
 function DataTableCell({ value, style }) {
   return (
     <td className="datatable__td" style={style}>
