@@ -12,7 +12,8 @@
     ".": {
       "import": "./dist/data-table.es.js",
       "require": "./dist/data-table.umd.js"
-    }
+    },
+    "./dist/data-table.css": "./dist/data-table.css"
   },
   "repository": {
     "type": "git",
