@@ -1,4 +1,4 @@
-import "../src/DataTable.css";
+import "./DataTable.css";
 import DataTableHeader from "./components/DataTableHeader";
 import DataTableBody from "./components/DataTableBody";
 
