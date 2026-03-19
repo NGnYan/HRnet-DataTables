@@ -1,4 +1,4 @@
-import "./DataTable.css";
+import "@/DataTable.css";
 
 function DataTableCell({ value, style }) {
   return (

@@ -1,5 +1,5 @@
+import "@/DataTable.css";
 import DataTableRow from "./DataTableRow";
-import "./DataTable.css";
 
 function DataTableBody({ data, columns, getCellStyle }) {
   return (

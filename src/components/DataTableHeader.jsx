@@ -1,4 +1,4 @@
-import "./DataTable.css";
+import "@/DataTable.css";
 
 function DataTableHeader({
   columns,
