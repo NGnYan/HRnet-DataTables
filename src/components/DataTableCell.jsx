@@ -1,9 +1,16 @@
 import "@/DataTable.css";
 
 function DataTableCell({ value, style }) {
+  const renderValue = () => {
+    if (value === null || value === undefined) return "";
+    if (Array.isArray(value)) return value.join(", ");
+    if (typeof value === "object") return JSON.stringify(value);
+    return value;
+  };
+
   return (
     <td className="datatable__td" style={style}>
-      {value ?? ""}
+      {renderValue()}
     </td>
   );
 }
