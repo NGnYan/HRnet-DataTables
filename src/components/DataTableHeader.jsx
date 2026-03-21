@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "@/DataTable.css";
 
 function DataTableHeader({
@@ -26,5 +27,17 @@ function DataTableHeader({
     </thead>
   );
 }
+
+DataTableHeader.propTypes = {
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  getCellStyle: PropTypes.func.isRequired,
+  headerBgColor: PropTypes.string,
+  headerFontColor: PropTypes.string,
+};
 
 export default DataTableHeader;

@@ -1,5 +1,7 @@
 import "@/DataTable.css";
 
+import PropTypes from "prop-types";
+
 function DataTableCell({ value, style }) {
   const renderValue = () => {
     if (value === null || value === undefined) return "";
@@ -14,5 +16,15 @@ function DataTableCell({ value, style }) {
     </td>
   );
 }
+
+DataTableCell.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  style: PropTypes.object,
+};
 
 export default DataTableCell;

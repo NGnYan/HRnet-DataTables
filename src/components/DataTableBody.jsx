@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "@/DataTable.css";
 import DataTableRow from "./DataTableRow";
 
@@ -16,5 +17,16 @@ function DataTableBody({ data, columns, getCellStyle }) {
     </tbody>
   );
 }
+
+DataTableBody.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  getCellStyle: PropTypes.func.isRequired,
+};
 
 export default DataTableBody;

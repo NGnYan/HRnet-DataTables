@@ -19,3 +19,46 @@
 .datatable__td {
   padding: 8px 12px;
 }
+
+.datatable-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.datatable__sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.datatable__sort-dropdown select {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.datatable__sort-dropdown select:hover {
+  border-color: #aaa;
+}
+
+.datatable__direction-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.datatable__direction-btn:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
