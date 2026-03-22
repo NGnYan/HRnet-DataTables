@@ -14,6 +14,9 @@ export function DataTable({
   borderColor = "#000000",
   boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.15)",
   sortable = false,
+  sortPlaceholder = "Sort by",
+  sortPosition = "left",
+  sortLabel = "",
 }) {
   const [sortKey, setSortKey] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
@@ -80,12 +83,18 @@ export function DataTable({
   return (
     <div className="datatable-wrapper">
       {sortable && (
-        <DataTableSortDropdown
-          columns={columns}
-          sortKey={sortKey}
-          onSort={handleSort}
-          onToggleDirection={handleToggleDirection}
-        />
+        <div
+          className={`datatable__sort-wrapper datatable__sort-wrapper--${sortPosition}`}
+        >
+          <DataTableSortDropdown
+            columns={columns}
+            sortKey={sortKey}
+            onSort={handleSort}
+            onToggleDirection={handleToggleDirection}
+            placeholder={sortPlaceholder}
+            label={sortLabel}
+          />
+        </div>
       )}
       <table
         className="datatable"
@@ -123,6 +132,9 @@ DataTable.propTypes = {
   borderColor: PropTypes.string,
   boxShadow: PropTypes.string,
   sortable: PropTypes.bool,
+  sortPlaceholder: PropTypes.string,
+  sortPosition: PropTypes.oneOf(["left", "right"]),
+  sortLabel: PropTypes.string,
 };
 
 export default DataTable;

@@ -6,11 +6,14 @@ function DataTableSortDropdown({
   sortKey,
   onSort,
   onToggleDirection,
+  placeholder,
+  label,
 }) {
   return (
     <div className="datatable__sort-dropdown">
+      {label && <span className="datatable__sort-label">{label}</span>}
       <select value={sortKey ?? ""} onChange={(e) => onSort(e.target.value)}>
-        <option value="">Sort by</option>
+        <option value="">{placeholder}</option>
         {columns.map((col) => (
           <option key={col.key} value={col.key}>
             {col.title}
@@ -40,6 +43,8 @@ DataTableSortDropdown.propTypes = {
   sortKey: PropTypes.string,
   onSort: PropTypes.func.isRequired,
   onToggleDirection: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default DataTableSortDropdown;
