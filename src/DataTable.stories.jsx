@@ -7,18 +7,19 @@ export default {
 };
 
 const columns = [
-  { key: "firstName", title: "First Name" },
-  { key: "lastName", title: "Last Name" },
-  { key: "startDate", title: "Start Date" },
-  { key: "department", title: "Department" },
-  { key: "dateOfBirth", title: "Date of Birth" },
-  { key: "city", title: "City" },
-  { key: "state", title: "State" },
-  { key: "zipCode", title: "Zip Code" },
+  { key: "firstName", title: "First Name", type: "string" },
+  { key: "lastName", title: "Last Name", type: "string" },
+  { key: "startDate", title: "Start Date", type: "date" },
+  { key: "department", title: "Department", type: "string" },
+  { key: "dateOfBirth", title: "Date of Birth", type: "date" },
+  { key: "city", title: "City", type: "string" },
+  { key: "state", title: "State", type: "string" },
+  { key: "zipCode", title: "Zip Code", type: "string" },
 ];
 
 const data = [
   {
+    id: "1",
     firstName: "Alice",
     lastName: "Johnson",
     startDate: "2023-01-10",
@@ -29,6 +30,7 @@ const data = [
     zipCode: "10001",
   },
   {
+    id: "2",
     firstName: "Bob",
     lastName: "Smith",
     startDate: "2022-03-15",
@@ -39,6 +41,7 @@ const data = [
     zipCode: "90001",
   },
   {
+    id: "3",
     firstName: "Charlie",
     lastName: "Brown",
     startDate: "2020-11-05",
@@ -49,6 +52,7 @@ const data = [
     zipCode: "60601",
   },
   {
+    id: "4",
     firstName: "Diana",
     lastName: "Evans",
     startDate: "2019-06-22",
@@ -59,6 +63,7 @@ const data = [
     zipCode: "94105",
   },
   {
+    id: "5",
     firstName: "Ethan",
     lastName: "Miller",
     startDate: "2023-01-10",
@@ -69,6 +74,7 @@ const data = [
     zipCode: "73301",
   },
   {
+    id: "6",
     firstName: "Fiona",
     lastName: "Garcia",
     startDate: "2022-09-18",
@@ -81,3 +87,7 @@ const data = [
 ];
 
 export const Basic = () => <DataTable columns={columns} data={data} />;
+
+export const SortDataTable = () => (
+  <DataTable columns={columns} data={data} sortable={true} />
+);

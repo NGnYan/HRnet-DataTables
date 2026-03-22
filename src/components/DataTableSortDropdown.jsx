@@ -10,7 +10,7 @@ function DataTableSortDropdown({
   return (
     <div className="datatable__sort-dropdown">
       <select value={sortKey ?? ""} onChange={(e) => onSort(e.target.value)}>
-        <option value="">Sort by...</option>
+        <option value="">Sort by</option>
         {columns.map((col) => (
           <option key={col.key} value={col.key}>
             {col.title}

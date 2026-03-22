@@ -13,6 +13,7 @@ export function DataTable({
   fontFamily = "sans-serif",
   borderColor = "#000000",
   boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.15)",
+  sortable = false,
 }) {
   const [sortKey, setSortKey] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
@@ -78,12 +79,14 @@ export function DataTable({
 
   return (
     <div className="datatable-wrapper">
-      <DataTableSortDropdown
-        columns={columns}
-        sortKey={sortKey}
-        onSort={handleSort}
-        onToggleDirection={handleToggleDirection}
-      />
+      {sortable && (
+        <DataTableSortDropdown
+          columns={columns}
+          sortKey={sortKey}
+          onSort={handleSort}
+          onToggleDirection={handleToggleDirection}
+        />
+      )}
       <table
         className="datatable"
         style={{ fontFamily, border: borderStyle, boxShadow }}
@@ -119,6 +122,7 @@ DataTable.propTypes = {
   fontFamily: PropTypes.string,
   borderColor: PropTypes.string,
   boxShadow: PropTypes.string,
+  sortable: PropTypes.bool,
 };
 
 export default DataTable;
