@@ -1,4 +1,4 @@
-import "@/DataTable.css";
+import "@/style/DataTable.css";
 
 import PropTypes from "prop-types";
 

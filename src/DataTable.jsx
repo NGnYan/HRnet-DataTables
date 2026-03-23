@@ -1,8 +1,9 @@
-import "@/DataTable.css";
+import "@/style/DataTable.css";
 import PropTypes from "prop-types";
 import DataTableHeader from "./components/DataTableHeader";
 import DataTableBody from "./components/DataTableBody";
 import DataTableSortDropdown from "./components/DataTableSortDropdown";
+import DataTableSearch from "./components/DataTableSearch";
 import { useState } from "react";
 
 export function DataTable({
@@ -20,6 +21,7 @@ export function DataTable({
 }) {
   const [sortKey, setSortKey] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   if (!columns || columns.length === 0) {
     return <p>No columns defined.</p>;
@@ -67,13 +69,15 @@ export function DataTable({
     sortedData.sort((a, b) => {
       const valA = a[sortKey];
       const valB = b[sortKey];
-      const col = columns.find((c) => c.key === sortKey);
+      const col = columns.find((col) => col.key === sortKey);
 
       let result;
       if (col?.type === "date") {
         result = new Date(valA) - new Date(valB);
+      } else if (typeof valA === "number" && typeof valB === "number") {
+        result = valA - valB;
       } else {
-        result = valA.localeCompare(valB);
+        result = String(valA).localeCompare(String(valB));
       }
 
       return sortDirection === "up" ? result : -result;
@@ -86,6 +90,7 @@ export function DataTable({
         <div
           className={`datatable__sort-wrapper datatable__sort-wrapper--${sortPosition}`}
         >
+          <DataTableSearch searchText={searchText} onSearch={setSearchText} />
           <DataTableSortDropdown
             columns={columns}
             sortKey={sortKey}

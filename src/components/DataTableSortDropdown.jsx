@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "@/DataTable.css";
+import "@/style/components/DataTableSortDropdown.css";
 
 function DataTableSortDropdown({
   columns,

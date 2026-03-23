@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "@/DataTable.css";
+import "@/style/DataTable.css";
 import DataTableRow from "./DataTableRow";
 
 function DataTableBody({ data, columns, getCellStyle }) {
