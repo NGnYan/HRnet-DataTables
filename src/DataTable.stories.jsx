@@ -93,8 +93,10 @@ export const SortDataTable = () => (
     columns={columns}
     data={data}
     headerBgColor="#87A353"
+    searchable={true}
     sortable={true}
     sortPlaceholder="-"
+    searchPosition="left"
     sortPosition="right"
     sortLabel="Trier par :"
   />

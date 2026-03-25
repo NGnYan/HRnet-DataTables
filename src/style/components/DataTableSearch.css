@@ -1,0 +1,23 @@
+.datatable__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.datatable__search input {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.datatable__search input:hover {
+  border-color: #aaa;
+}
+
+.datatable__search input:focus {
+  border-color: #888;
+}

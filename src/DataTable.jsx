@@ -17,9 +17,11 @@ export function DataTable({
   fontFamily = "sans-serif",
   borderColor = "#000000",
   boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.15)",
+  searchable = false,
   sortable = false,
   sortPlaceholder = "Sort by",
-  sortPosition = "left",
+  searchPosition = "left",
+  sortPosition = "right",
   sortLabel = "",
 }) {
   const [sortKey, setSortKey] = useState(null);
@@ -87,23 +89,56 @@ export function DataTable({
     });
   }
 
+  let filteredData;
+
+  if (!searchText) {
+    filteredData = sortedData;
+  } else {
+    filteredData = sortedData.filter((row) => {
+      return columns.some((col) => {
+        const cellValue = String(row[col.key] ?? "").toLowerCase();
+        return cellValue.includes(searchText.toLowerCase());
+      });
+    });
+  }
+
   return (
     <div className="datatable-wrapper">
-      {sortable && (
-        <div
-          className={`datatable__sort-wrapper datatable__sort-wrapper--${sortPosition}`}
-        >
-          <DataTableSearch searchText={searchText} onSearch={setSearchText} />
-          <DataTableSortDropdown
-            columns={columns}
-            sortKey={sortKey}
-            onSort={handleSort}
-            onToggleDirection={handleToggleDirection}
-            placeholder={sortPlaceholder}
-            label={sortLabel}
-          />
+      <div className="datatable-header">
+        <div className="datatable-header-left">
+          {searchable && searchPosition === "left" && (
+            <DataTableSearch searchText={searchText} onSearch={setSearchText} />
+          )}
+
+          {sortable && sortPosition === "left" && (
+            <DataTableSortDropdown
+              columns={columns}
+              sortKey={sortKey}
+              onSort={handleSort}
+              onToggleDirection={handleToggleDirection}
+              placeholder={sortPlaceholder}
+              label={sortLabel}
+            />
+          )}
         </div>
-      )}
+
+        <div className="datatable-header-right">
+          {searchable && searchPosition === "right" && (
+            <DataTableSearch searchText={searchText} onSearch={setSearchText} />
+          )}
+
+          {sortable && sortPosition === "right" && (
+            <DataTableSortDropdown
+              columns={columns}
+              sortKey={sortKey}
+              onSort={handleSort}
+              onToggleDirection={handleToggleDirection}
+              placeholder={sortPlaceholder}
+              label={sortLabel}
+            />
+          )}
+        </div>
+      </div>
       <table
         className="datatable"
         style={{ fontFamily, border: borderStyle, boxShadow }}
@@ -117,7 +152,7 @@ export function DataTable({
           headerFontColor={headerFontColor}
         />
         <DataTableBody
-          data={sortedData}
+          data={filteredData}
           columns={columns}
           getCellStyle={getCellStyle}
         />
