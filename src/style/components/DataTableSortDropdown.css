@@ -20,6 +20,7 @@
 }
 
 .datatable__direction-btn {
+  all: unset;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -32,6 +33,11 @@
 .datatable__direction-btn:hover {
   opacity: 1;
   transform: translateY(-1px);
+}
+
+.datatable__direction-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .datatable__sort-wrapper {

@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import "@/style/components/DataTableSortDropdown.css";
 
+/**
+ * Dropdown component that allows the user to sort the table by a selected column.
+ */
 function DataTableSortDropdown({
   columns,
   sortKey,
@@ -22,12 +25,23 @@ function DataTableSortDropdown({
       </select>
 
       {sortKey && (
-        <span className="datatable__direction-btn" onClick={onToggleDirection}>
-          <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+        <button
+          type="button"
+          className="datatable__direction-btn"
+          aria-label="Switch sort order"
+          onClick={onToggleDirection}
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 12 12"
+            fill="none"
+            aria-hidden="true"
+          >
             <path d="M6 2L9 5H3L6 2Z" fill="currentColor" />
             <path d="M6 10L3 7H9L6 10Z" fill="currentColor" />
           </svg>
-        </span>
+        </button>
       )}
     </div>
   );

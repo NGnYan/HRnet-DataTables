@@ -6,6 +6,9 @@ import DataTableSortDropdown from "./components/DataTableSortDropdown";
 import DataTableSearch from "./components/DataTableSearch";
 import { useState } from "react";
 
+/**
+ * Main DataTable component that displays data in a table.
+ */
 export function DataTable({
   columns,
   data,
