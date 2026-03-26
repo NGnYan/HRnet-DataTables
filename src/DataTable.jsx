@@ -23,6 +23,10 @@ export function DataTable({
   searchPosition = "left",
   sortPosition = "right",
   sortLabel = "",
+  onEdit,
+  onDelete,
+  actionEditColor = "#cccccc",
+  actionDeleteColor = "#e05252",
 }) {
   const [sortKey, setSortKey] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
@@ -150,11 +154,19 @@ export function DataTable({
           getCellStyle={getCellStyle}
           headerBgColor={headerBgColor}
           headerFontColor={headerFontColor}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          borderStyle={borderStyle}
         />
         <DataTableBody
           data={filteredData}
           columns={columns}
           getCellStyle={getCellStyle}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          borderStyle={borderStyle}
+          actionEditColor={actionEditColor}
+          actionDeleteColor={actionDeleteColor}
         />
       </table>
     </div>
@@ -178,6 +190,12 @@ DataTable.propTypes = {
   sortPlaceholder: PropTypes.string,
   sortPosition: PropTypes.oneOf(["left", "right"]),
   sortLabel: PropTypes.string,
+  searchable: PropTypes.bool,
+  searchPosition: PropTypes.oneOf(["left", "right"]),
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+  actionEditColor: PropTypes.string,
+  actionDeleteColor: PropTypes.string,
 };
 
 export default DataTable;

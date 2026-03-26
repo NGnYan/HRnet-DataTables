@@ -6,6 +6,9 @@ function DataTableHeader({
   getCellStyle,
   headerBgColor,
   headerFontColor,
+  onEdit,
+  onDelete,
+  borderStyle,
 }) {
   return (
     <thead>
@@ -23,6 +26,21 @@ function DataTableHeader({
             {col.title}
           </th>
         ))}
+        {(onEdit || onDelete) && (
+          <th
+            className="datatable__th"
+            style={{
+              backgroundColor: headerBgColor,
+              color: headerFontColor,
+              borderTop: "none",
+              borderBottom: borderStyle,
+              borderRight: "none",
+              borderLeft: borderStyle,
+            }}
+          >
+            Actions
+          </th>
+        )}
       </tr>
     </thead>
   );
@@ -38,6 +56,9 @@ DataTableHeader.propTypes = {
   getCellStyle: PropTypes.func.isRequired,
   headerBgColor: PropTypes.string,
   headerFontColor: PropTypes.string,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+  borderStyle: PropTypes.string,
 };
 
 export default DataTableHeader;

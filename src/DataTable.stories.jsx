@@ -1,4 +1,3 @@
-import React from "react";
 import DataTable from "./DataTable";
 
 export default {
@@ -88,16 +87,34 @@ const data = [
 
 export const Basic = () => <DataTable columns={columns} data={data} />;
 
-export const SortDataTable = () => (
+export const DataTableSort = () => (
   <DataTable
     columns={columns}
     data={data}
     headerBgColor="#87A353"
-    searchable={true}
     sortable={true}
-    sortPlaceholder="-"
-    searchPosition="left"
     sortPosition="right"
     sortLabel="Trier par :"
+    sortPlaceholder="-"
+  />
+);
+
+export const DataTableSearch = () => (
+  <DataTable
+    columns={columns}
+    data={data}
+    searchable={true}
+    searchPosition="left"
+  />
+);
+
+export const DataTableActions = () => (
+  <DataTable
+    columns={columns}
+    data={data}
+    onDelete={(row) => console.log("delete", row)}
+    onEdit={(row) => console.log("edit", row)}
+    actionEditColor="#cccccc"
+    actionDeleteColor="#e05252"
   />
 );

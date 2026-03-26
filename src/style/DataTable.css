@@ -8,6 +8,7 @@
 
 .datatable__th {
   text-align: center;
+  border: none;
 }
 
 .datatable__td {

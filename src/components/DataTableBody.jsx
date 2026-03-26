@@ -2,7 +2,16 @@ import PropTypes from "prop-types";
 import "@/style/DataTable.css";
 import DataTableRow from "./DataTableRow";
 
-function DataTableBody({ data, columns, getCellStyle }) {
+function DataTableBody({
+  data,
+  columns,
+  getCellStyle,
+  onEdit,
+  onDelete,
+  borderStyle,
+  actionEditColor,
+  actionDeleteColor,
+}) {
   return (
     <tbody>
       {data.map((row, rowIndex) => (
@@ -12,6 +21,11 @@ function DataTableBody({ data, columns, getCellStyle }) {
           columns={columns}
           getCellStyle={getCellStyle}
           isLastRow={rowIndex === data.length - 1}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          borderStyle={borderStyle}
+          actionEditColor={actionEditColor}
+          actionDeleteColor={actionDeleteColor}
         />
       ))}
     </tbody>
@@ -27,6 +41,11 @@ DataTableBody.propTypes = {
     }),
   ).isRequired,
   getCellStyle: PropTypes.func.isRequired,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+  borderStyle: PropTypes.string,
+  actionEditColor: PropTypes.string,
+  actionDeleteColor: PropTypes.string,
 };
 
 export default DataTableBody;
