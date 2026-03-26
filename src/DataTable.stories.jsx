@@ -87,11 +87,14 @@ const data = [
 
 export const Basic = () => <DataTable columns={columns} data={data} />;
 
+export const DataTableColor = () => (
+  <DataTable columns={columns} data={data} headerBgColor="#87A353" />
+);
+
 export const DataTableSort = () => (
   <DataTable
     columns={columns}
     data={data}
-    headerBgColor="#87A353"
     sortable={true}
     sortPosition="right"
     sortLabel="Trier par :"
