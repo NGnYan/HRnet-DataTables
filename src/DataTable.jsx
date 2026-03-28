@@ -19,6 +19,7 @@ export function DataTable({
   boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.15)",
   searchable = false,
   sortable = false,
+  headerSortable = false,
   sortPlaceholder = "Sort by",
   searchPosition = "left",
   sortPosition = "right",
@@ -154,6 +155,7 @@ export function DataTable({
           getCellStyle={getCellStyle}
           headerBgColor={headerBgColor}
           headerFontColor={headerFontColor}
+          onSort={headerSortable ? handleSort : undefined}
           onEdit={onEdit}
           onDelete={onDelete}
           borderStyle={borderStyle}
@@ -187,6 +189,7 @@ DataTable.propTypes = {
   borderColor: PropTypes.string,
   boxShadow: PropTypes.string,
   sortable: PropTypes.bool,
+  headerSortable: PropTypes.bool,
   sortPlaceholder: PropTypes.string,
   sortPosition: PropTypes.oneOf(["left", "right"]),
   sortLabel: PropTypes.string,

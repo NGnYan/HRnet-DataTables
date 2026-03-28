@@ -6,6 +6,7 @@ function DataTableHeader({
   getCellStyle,
   headerBgColor,
   headerFontColor,
+  onSort,
   onEdit,
   onDelete,
   borderStyle,
@@ -17,6 +18,7 @@ function DataTableHeader({
           <th
             className="datatable__th"
             key={col.key}
+            onClick={() => onSort && onSort(col.key)}
             style={{
               ...getCellStyle(index),
               backgroundColor: headerBgColor,
@@ -56,6 +58,7 @@ DataTableHeader.propTypes = {
   getCellStyle: PropTypes.func.isRequired,
   headerBgColor: PropTypes.string,
   headerFontColor: PropTypes.string,
+  onSort: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
   borderStyle: PropTypes.string,

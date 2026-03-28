@@ -9,6 +9,8 @@
 .datatable__th {
   text-align: center;
   border: none;
+  cursor: pointer;
+  user-select: none;
 }
 
 .datatable__td {

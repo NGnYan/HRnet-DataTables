@@ -102,6 +102,10 @@ export const DataTableSort = () => (
   />
 );
 
+export const DataTableHeaderSort = () => (
+  <DataTable columns={columns} data={data} headerSortable={true} />
+);
+
 export const DataTableSearch = () => (
   <DataTable
     columns={columns}
