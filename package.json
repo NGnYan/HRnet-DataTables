@@ -1,6 +1,6 @@
 {
   "name": "@ngnyan/data-table",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "type": "module",
   "main": "dist/data-table.umd.js",
   "module": "dist/data-table.es.js",
