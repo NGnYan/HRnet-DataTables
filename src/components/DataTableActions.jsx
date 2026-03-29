@@ -29,6 +29,7 @@ function DataTableActions({
             type="button"
             style={{ backgroundColor: actionEditColor }}
             className="datatable__action-btn datatable__action-btn--edit"
+            aria-label="Edit employee"
             onClick={() => onEdit(row)}
           >
             Edit
@@ -39,6 +40,7 @@ function DataTableActions({
             type="button"
             style={{ backgroundColor: actionDeleteColor }}
             className="datatable__action-btn datatable__action-btn--delete"
+            aria-label="Delete employee"
             onClick={() => onDelete(row)}
           >
             <svg

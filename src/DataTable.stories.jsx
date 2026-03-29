@@ -19,8 +19,8 @@ const columns = [
 const data = [
   {
     id: "1",
-    firstName: "Alice",
-    lastName: "Johnson",
+    firstName: "John",
+    lastName: "Doe",
     startDate: "2023-01-10",
     department: "Marketing",
     dateOfBirth: "1990-05-12",
@@ -30,7 +30,7 @@ const data = [
   },
   {
     id: "2",
-    firstName: "Bob",
+    firstName: "Emma",
     lastName: "Smith",
     startDate: "2022-03-15",
     department: "Engineering",
@@ -97,7 +97,7 @@ export const DataTableSort = () => (
     data={data}
     sortable={true}
     sortPosition="right"
-    sortLabel="Trier par :"
+    sortLabel="Sort by :"
     sortPlaceholder="-"
   />
 );
@@ -122,6 +122,25 @@ export const DataTableActions = () => (
     onDelete={(row) => console.log("delete", row)}
     onEdit={(row) => console.log("edit", row)}
     actionEditColor="#cccccc"
+    actionDeleteColor="#e05252"
+  />
+);
+
+export const FullDataTable = () => (
+  <DataTable
+    columns={columns}
+    data={data}
+    headerBgColor="#87A353"
+    searchable={true}
+    sortable={true}
+    headerSortable={true}
+    sortPlaceholder="-"
+    searchPosition="left"
+    sortPosition="right"
+    sortLabel="Sort by :"
+    onDelete={(row) => console.log("delete", row)}
+    onEdit={(row) => console.log("edit", row)}
+    actionEditColor="#87A353"
     actionDeleteColor="#e05252"
   />
 );

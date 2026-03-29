@@ -15,7 +15,11 @@ function DataTableSortDropdown({
   return (
     <div className="datatable__sort-dropdown">
       {label && <span className="datatable__sort-label">{label}</span>}
-      <select value={sortKey ?? ""} onChange={(e) => onSort(e.target.value)}>
+      <select
+        value={sortKey ?? ""}
+        onChange={(e) => onSort(e.target.value)}
+        aria-label="Sort by column"
+      >
         <option value="">{placeholder}</option>
         {columns.map((col) => (
           <option key={col.key} value={col.key}>

@@ -11,6 +11,7 @@ function DataTableSearch({ searchText, onSearch }) {
         type="text"
         value={searchText}
         onChange={(e) => onSearch(e.target.value)}
+        aria-label="Search"
         placeholder="Search..."
       />
     </div>
