@@ -2,6 +2,18 @@
 
 A customizable and accessible React data table component with sorting, searching, and action buttons.
 
+## Preview
+
+![Data Table Preview](https://raw.githubusercontent.com/NGnYan/HRnet-DataTables/main/src/assets/preview.png)
+
+## Features
+
+- 🎨 Customizable styles
+- 🔍 Searchable table
+- 🔃 Sortable columns (dropdown or header click)
+- ✏️ Row actions (edit / delete)
+- ♿ Accessible 
+
 ## Installation
 
 Install the package in your project :
@@ -14,6 +26,17 @@ Import the CSS in your project :
 import "@ngnyan/data-table/dist/data-table.css";
 ```
 
+## Peer Dependencies
+
+This package requires the following peer dependencies to be installed in your project :
+```bash
+npm install react react-dom
+```
+
+| Package | Version |
+|---|---|
+| `react` | `^18.0.0` or `^19.0.0` |
+| `react-dom` | `^18.0.0` or `^19.0.0` |
 
 ## Usage 
 
@@ -65,6 +88,7 @@ const columns = [
 ## Data
 
 Each row in `data` is an object. The keys must match the `key` defined in your columns.
+
 ```jsx
 const data = [
   {
@@ -87,6 +111,7 @@ const data = [
 ```
 
 > **Note:** Each row must have a unique `id` field. It is used internally for stable sorting and filtering. We recommend using `crypto.randomUUID()` to generate unique ids.
+
 ```js
 const newEmployee = {
   id: crypto.randomUUID(),
@@ -119,6 +144,7 @@ These props allow you to add a search input above the table to filter rows.
 |---|---|---|---|
 | `searchable` | `bool` | `false` | Enable the search input |
 | `searchPosition` | `"left" \| "right"` | `"left"` | Position of the search input |
+
 ```jsx
 <DataTable
   columns={columns}
@@ -138,6 +164,7 @@ These props allow you to add a sort dropdown above the table to sort rows by a s
 | `sortPosition` | `"left" \| "right"` | `"right"` | Position of the sort dropdown |
 | `sortPlaceholder` | `string` | `"Sort by"` | Default text displayed in the dropdown |
 | `sortLabel` | `string` | `""` | Label displayed before the dropdown |
+
 ```jsx
 <DataTable
   columns={columns}
@@ -156,6 +183,7 @@ These props allow you to sort rows by clicking directly on a column header.
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `headerSortable` | `bool` | `false` | Enable sorting by clicking column headers |
+
 ```jsx
 <DataTable
   columns={columns}
@@ -311,3 +339,11 @@ function App() {
   );
 }
 ```
+
+## License
+
+MIT
+
+## Author
+
+NGnYan
