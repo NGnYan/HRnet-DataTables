@@ -171,8 +171,8 @@ These props allow you to add a sort dropdown above the table to sort rows by a s
   data={data}
   sortable={true}
   sortPosition="right"
-  sortPlaceholder="Sort by..."
-  sortLabel="Sort :"
+  sortPlaceholder="-"
+  sortLabel="Sort by :"
 />
 ```
 
@@ -328,8 +328,8 @@ function App() {
       searchPosition="left"
       sortable={true}
       sortPosition="right"
-      sortPlaceholder="Sort by..."
-      sortLabel="Sort :"
+      sortPlaceholder="-"
+      sortLabel="Sort by :"
       headerSortable={true}
       onEdit={(row) => console.log("Edit", row)}
       onDelete={(row) => console.log("Delete", row)}
