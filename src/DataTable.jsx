@@ -4,6 +4,7 @@ import DataTableHeader from "./components/DataTableHeader";
 import DataTableBody from "./components/DataTableBody";
 import DataTableSortDropdown from "./components/DataTableSortDropdown";
 import DataTableSearch from "./components/DataTableSearch";
+import DataTablePagination from "./components/DataTablePagination";
 import { useState } from "react";
 
 /**
@@ -28,10 +29,16 @@ export function DataTable({
   onDelete,
   actionEditColor = "#cccccc",
   actionDeleteColor = "#e05252",
+  pagination = false,
+  rowsPerPage = 10,
+  paginationBgColor = "#FFFFFF",
+  paginationActiveTextColor = "#000000",
+  paginationTextColor = "#000000",
 }) {
   const [sortKey, setSortKey] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
   const [searchText, setSearchText] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   if (!columns || columns.length === 0) {
     return <p>No columns defined.</p>;
@@ -107,6 +114,15 @@ export function DataTable({
     });
   }
 
+  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+  const paginatedData = pagination
+    ? filteredData.slice(
+        (currentPage - 1) * rowsPerPage,
+        currentPage * rowsPerPage,
+      )
+    : filteredData;
+
   return (
     <div className="datatable-wrapper">
       <div className="datatable-header">
@@ -161,7 +177,7 @@ export function DataTable({
           borderStyle={borderStyle}
         />
         <DataTableBody
-          data={filteredData}
+          data={paginatedData}
           columns={columns}
           getCellStyle={getCellStyle}
           onEdit={onEdit}
@@ -171,6 +187,16 @@ export function DataTable({
           actionDeleteColor={actionDeleteColor}
         />
       </table>
+      {pagination && totalPages > 1 && (
+        <DataTablePagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          paginationBgColor={paginationBgColor}
+          paginationTextColor={paginationTextColor}
+          paginationActiveTextColor={paginationActiveTextColor}
+        />
+      )}
     </div>
   );
 }
@@ -199,6 +225,11 @@ DataTable.propTypes = {
   onDelete: PropTypes.func,
   actionEditColor: PropTypes.string,
   actionDeleteColor: PropTypes.string,
+  pagination: PropTypes.bool,
+  rowsPerPage: PropTypes.number,
+  paginationBgColor: PropTypes.string,
+  paginationActiveTextColor: PropTypes.string,
+  paginationTextColor: PropTypes.string,
 };
 
 export default DataTable;

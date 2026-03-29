@@ -1,0 +1,36 @@
+.datatable__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.datatable__pagination-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.datatable__pagination-btn:hover:not(:disabled) {
+  border-color: #aaa;
+  transform: translateY(-1px);
+  opacity: 0.8;
+}
+
+.datatable__pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.datatable__pagination-btn--active {
+  font-weight: 500;
+}

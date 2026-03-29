@@ -91,7 +91,7 @@ export const DataTableColor = () => (
   <DataTable columns={columns} data={data} headerBgColor="#87A353" />
 );
 
-export const DataTableSort = () => (
+export const DataTableDropdownSort = () => (
   <DataTable
     columns={columns}
     data={data}
@@ -123,6 +123,18 @@ export const DataTableActions = () => (
     onEdit={(row) => console.log("edit", row)}
     actionEditColor="#cccccc"
     actionDeleteColor="#e05252"
+  />
+);
+
+export const DataTablePagination = () => (
+  <DataTable
+    columns={columns}
+    data={data}
+    pagination={true}
+    rowsPerPage={1}
+    paginationBgColor="#87A353"
+    paginationActiveTextColor="#FFFFFF"
+    paginationTextColor="#000000"
   />
 );
 

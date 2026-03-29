@@ -286,6 +286,20 @@ These props allow you to add edit and delete buttons on each row. The column onl
 />
 ```
 
+### Pagination
+
+```jsx
+<DataTable
+  columns={columns}
+  data={data}
+  pagination={true}
+  rowsPerPage={5}
+  paginationBgColor="#87A353"
+  paginationActiveTextColor="#FFFFFF"
+  paginationTextColor="#000000"
+/>
+```
+
 ### Full example
 
 ```jsx
