@@ -28,6 +28,11 @@ Import the CSS in your project :
 import "@ngnyan/data-table/dist/data-table.css";
 ```
 
+## Prerequisites
+
+- Node.js >= 18.0.0
+- React 18 or 19
+
 ## Peer Dependencies
 
 This package requires the following peer dependencies to be installed in your project :

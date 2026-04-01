@@ -3,11 +3,24 @@ import "@/style/components/DataTableActions.css";
 
 /**
  * Action buttons component for each row (edit and/or delete).
+ *
+ * @param {Object} props
+ * @param {Object} props.row - The data object for the current row
+ * @param {Function} [props.onEdit] - Callback triggered when the edit button is clicked
+ * @param {Function} [props.onDelete] - Callback triggered when the delete button is clicked
+ * @param {boolean} [props.isLastRow] - Indicates if the current row is the last one (used for styling)
+ * @param {string} [props.borderStyle] - CSS border style applied to table cell borders
+ * @param {string} [props.actionEditColor] - Background color for the edit button
+ * @param {string} [props.actionDeleteColor] - Background color for the delete button
+ * @param {string} [props.editLabel] - Accessible label for the edit button
+ * @param {string} [props.deleteLabel] - Accessible label for the delete button
  */
 function DataTableActions({
   row,
   onEdit,
   onDelete,
+  editLabel,
+  deleteLabel,
   isLastRow,
   borderStyle,
   actionEditColor,
@@ -29,7 +42,7 @@ function DataTableActions({
             type="button"
             style={{ backgroundColor: actionEditColor }}
             className="datatable__action-btn datatable__action-btn--edit"
-            aria-label="Edit employee"
+            aria-label={editLabel}
             onClick={() => onEdit(row)}
           >
             Edit
@@ -40,7 +53,7 @@ function DataTableActions({
             type="button"
             style={{ backgroundColor: actionDeleteColor }}
             className="datatable__action-btn datatable__action-btn--delete"
-            aria-label="Delete employee"
+            aria-label={deleteLabel}
             onClick={() => onDelete(row)}
           >
             <svg
@@ -70,6 +83,8 @@ DataTableActions.propTypes = {
   row: PropTypes.object.isRequired,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
+  editLabel: PropTypes.string,
+  deleteLabel: PropTypes.string,
   isLastRow: PropTypes.bool,
   borderStyle: PropTypes.string,
   actionEditColor: PropTypes.string,

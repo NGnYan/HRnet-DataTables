@@ -3,6 +3,18 @@ import "@/style/components/DataTableSortDropdown.css";
 
 /**
  * Dropdown component that allows the user to sort the table by a selected column.
+ *
+ * @param {Array} columns - Column definitions — key, title
+ * @param {string} sortKey - Currently selected sort column key
+ * @param {Function} onSort - Called with the column key when sort changes
+ * @param {Function} onToggleDirection - Called when sort direction is toggled
+ * @param {string} placeholder - Default text displayed in the dropdown
+ * @param {string} dropdownlabel - Label displayed before the dropdown
+ * @param {string} [props.sortByLabel] - Accessible label for the sort dropdown
+* @param {string} [props.toggleDirectionLabel] - Accessible label for the toggle direction button
+
+sortByLabel: PropTypes.string,
+toggleDirectionLabel: PropTypes.string,
  */
 function DataTableSortDropdown({
   columns,
@@ -10,15 +22,19 @@ function DataTableSortDropdown({
   onSort,
   onToggleDirection,
   placeholder,
-  label,
+  dropdownLabel,
+  sortByLabel = "Sort by column",
+  toggleDirectionLabel = "Switch sort order",
 }) {
   return (
     <div className="datatable__sort-dropdown">
-      {label && <span className="datatable__sort-label">{label}</span>}
+      {dropdownLabel && (
+        <span className="datatable__sort-label">{dropdownLabel}</span>
+      )}
       <select
         value={sortKey ?? ""}
         onChange={(e) => onSort(e.target.value)}
-        aria-label="Sort by column"
+        aria-label={sortByLabel}
       >
         <option value="">{placeholder}</option>
         {columns.map((col) => (
@@ -32,7 +48,7 @@ function DataTableSortDropdown({
         <button
           type="button"
           className="datatable__direction-btn"
-          aria-label="Switch sort order"
+          aria-label={toggleDirectionLabel}
           onClick={onToggleDirection}
         >
           <svg
@@ -62,7 +78,9 @@ DataTableSortDropdown.propTypes = {
   onSort: PropTypes.func.isRequired,
   onToggleDirection: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  label: PropTypes.string,
+  dropdownLabel: PropTypes.string,
+  sortByLabel: PropTypes.string,
+  toggleDirectionLabel: PropTypes.string,
 };
 
 export default DataTableSortDropdown;

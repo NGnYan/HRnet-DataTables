@@ -1,6 +1,17 @@
 {
   "name": "@ngnyan/data-table",
   "version": "1.0.21",
+  "description": "A customizable and accessible React data table component with sorting, searching, pagination and action buttons.",
+  "author": "NGnYan",
+  "keywords": [
+    "react",
+    "datatable",
+    "table",
+    "sort",
+    "search",
+    "pagination",
+    "accessible"
+  ],
   "type": "module",
   "main": "dist/data-table.umd.js",
   "module": "dist/data-table.es.js",
@@ -23,6 +34,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test": "vitest --config vitest.unit.config.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint ."
@@ -41,6 +53,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "storybook": "^10.2.12",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vitest": "^4.1.2"
   }
 }

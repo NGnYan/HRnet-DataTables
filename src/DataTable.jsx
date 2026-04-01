@@ -5,10 +5,43 @@ import DataTableBody from "./components/DataTableBody";
 import DataTableSortDropdown from "./components/DataTableSortDropdown";
 import DataTableSearch from "./components/DataTableSearch";
 import DataTablePagination from "./components/DataTablePagination";
+import { filterData, sortData, paginateData } from "./utils.js";
 import { useState } from "react";
 
 /**
  * Main DataTable component that displays data in a table.
+ *
+ * @param {Array} columns - Column definitions — key, title, type
+ * @param {Array} data - Row data — each row must have a unique id
+ * @param {string} headerBgColor - Header background color
+ * @param {string} headerFontColor - Header text color
+ * @param {string} fontFamily - Table font family
+ * @param {string} borderColor - Table border color
+ * @param {string} boxShadow - Table box shadow
+ * @param {boolean} searchable - Enable search input
+ * @param {string} searchPosition - Search input position ("left" or "right")
+ * @param {boolean} sortable - Enable sort dropdown
+ * @param {string} sortPosition - Sort dropdown position ("left" or "right")
+ * @param {string} sortPlaceholder - Default text in sort dropdown
+ * @param {string} sortLabel - Label before sort dropdown
+ * @param {boolean} headerSortable - Enable sorting by clicking column headers
+ * @param {Function} onEdit - Called with row data when Edit is clicked
+ * @param {Function} onDelete - Called with row data when Delete is clicked
+ * @param {string} actionEditColor - Edit button background color
+ * @param {string} actionDeleteColor - Delete button background color
+ * @param {boolean} pagination - Enable pagination
+ * @param {number} rowsPerPage - Number of rows per page
+ * @param {string} paginationBgColor - Pagination button background color
+ * @param {string} paginationActiveTextColor - Active page text color
+ * @param {string} paginationTextColor - Pagination text color
+ * @param {string} tableLabel - Accessible label for the table
+ * @param {string} searchLabel - Accessible label for the search input
+ * @param {string} previousLabel - Accessible label for the previous page button
+ * @param {string} nextLabel - Accessible label for the next page button
+ * @param {string} sortByLabel - Accessible label for the sort dropdown
+ * @param {string} toggleDirectionLabel - Accessible label for the toggle direction button
+ * @param {string} editLabel - Accessible label for the edit button
+ * @param {string} deleteLabel - Accessible label for the delete button
  */
 export function DataTable({
   columns,
@@ -18,7 +51,15 @@ export function DataTable({
   fontFamily = "sans-serif",
   borderColor = "#000000",
   boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.15)",
+  tableLabel = "Data table",
+  searchLabel = "Search",
+  sortByLabel = "Sort by column",
+  toggleDirectionLabel = "Switch sort order",
+  editLabel = "Edit",
+  deleteLabel = "Delete",
   searchable = false,
+  previousLabel = "Previous page",
+  nextLabel = "Next page",
   sortable = false,
   headerSortable = false,
   sortPlaceholder = "Sort by",
@@ -27,6 +68,7 @@ export function DataTable({
   sortLabel = "",
   onEdit,
   onDelete,
+
   actionEditColor = "#cccccc",
   actionDeleteColor = "#e05252",
   pagination = false,
@@ -80,47 +122,11 @@ export function DataTable({
     setSortDirection((prev) => (prev === "up" ? "down" : "up"));
   };
 
-  const sortedData = [...data];
-
-  if (sortKey) {
-    sortedData.sort((a, b) => {
-      const valA = a[sortKey];
-      const valB = b[sortKey];
-      const col = columns.find((col) => col.key === sortKey);
-
-      let result;
-      if (col?.type === "date") {
-        result = new Date(valA) - new Date(valB);
-      } else if (typeof valA === "number" && typeof valB === "number") {
-        result = valA - valB;
-      } else {
-        result = String(valA).localeCompare(String(valB));
-      }
-
-      return sortDirection === "up" ? result : -result;
-    });
-  }
-
-  let filteredData;
-
-  if (!searchText) {
-    filteredData = sortedData;
-  } else {
-    filteredData = sortedData.filter((row) => {
-      return columns.some((col) => {
-        const cellValue = String(row[col.key] ?? "").toLowerCase();
-        return cellValue.includes(searchText.toLowerCase());
-      });
-    });
-  }
-
+  const sortedData = sortData(data, sortKey, sortDirection, columns);
+  const filteredData = filterData(sortedData, columns, searchText);
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-
   const paginatedData = pagination
-    ? filteredData.slice(
-        (currentPage - 1) * rowsPerPage,
-        currentPage * rowsPerPage,
-      )
+    ? paginateData(filteredData, currentPage, rowsPerPage)
     : filteredData;
 
   return (
@@ -138,14 +144,20 @@ export function DataTable({
               onSort={handleSort}
               onToggleDirection={handleToggleDirection}
               placeholder={sortPlaceholder}
-              label={sortLabel}
+              dropdownLabel={sortLabel}
+              sortByLabel={sortByLabel}
+              toggleDirectionLabel={toggleDirectionLabel}
             />
           )}
         </div>
 
         <div className="datatable-header-right">
           {searchable && searchPosition === "right" && (
-            <DataTableSearch searchText={searchText} onSearch={setSearchText} />
+            <DataTableSearch
+              searchText={searchText}
+              onSearch={setSearchText}
+              searchLabel={searchLabel}
+            />
           )}
 
           {sortable && sortPosition === "right" && (
@@ -155,7 +167,9 @@ export function DataTable({
               onSort={handleSort}
               onToggleDirection={handleToggleDirection}
               placeholder={sortPlaceholder}
-              label={sortLabel}
+              dropdownLabel={sortLabel}
+              sortByLabel={sortByLabel}
+              toggleDirectionLabel={toggleDirectionLabel}
             />
           )}
         </div>
@@ -164,7 +178,7 @@ export function DataTable({
         className="datatable"
         style={{ fontFamily, border: borderStyle, boxShadow }}
         role="table"
-        aria-label="Data table"
+        aria-label={tableLabel}
       >
         <DataTableHeader
           columns={columns}
@@ -175,6 +189,8 @@ export function DataTable({
           onEdit={onEdit}
           onDelete={onDelete}
           borderStyle={borderStyle}
+          sortKey={sortKey}
+          sortDirection={sortDirection}
         />
         <DataTableBody
           data={paginatedData}
@@ -185,6 +201,8 @@ export function DataTable({
           borderStyle={borderStyle}
           actionEditColor={actionEditColor}
           actionDeleteColor={actionDeleteColor}
+          editLabel={editLabel}
+          deleteLabel={deleteLabel}
         />
       </table>
       {pagination && totalPages > 1 && (
@@ -195,6 +213,8 @@ export function DataTable({
           paginationBgColor={paginationBgColor}
           paginationTextColor={paginationTextColor}
           paginationActiveTextColor={paginationActiveTextColor}
+          previousLabel={previousLabel}
+          nextLabel={nextLabel}
         />
       )}
     </div>
@@ -230,6 +250,14 @@ DataTable.propTypes = {
   paginationBgColor: PropTypes.string,
   paginationActiveTextColor: PropTypes.string,
   paginationTextColor: PropTypes.string,
+  tableLabel: PropTypes.string,
+  searchLabel: PropTypes.string,
+  previousLabel: PropTypes.string,
+  nextLabel: PropTypes.string,
+  sortByLabel: PropTypes.string,
+  toggleDirectionLabel: PropTypes.string,
+  editLabel: PropTypes.string,
+  deleteLabel: PropTypes.string,
 };
 
 export default DataTable;

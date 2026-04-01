@@ -3,6 +3,16 @@ import "@/style/components/DataTablePagination.css";
 
 /**
  * Pagination component for the DataTable.
+ *
+ * @param {Object} props
+ * @param {number} props.currentPage - The currently active page (1-based index)
+ * @param {number} props.totalPages - Total number of available pages
+ * @param {Function} props.onPageChange - Callback triggered when the page changes
+ * @param {string} [props.paginationBgColor] - Background color for the active page button
+ * @param {string} [props.paginationActiveTextColor] - Text and border color for the active page button
+ * @param {string} [props.paginationTextColor] - Text color for inactive pagination buttons
+ * @param {string} [props.previousLabel] - Accessible label for the previous page button
+ * @param {string} [props.nextLabel] - Accessible label for the next page button
  */
 function DataTablePagination({
   currentPage,
@@ -11,6 +21,8 @@ function DataTablePagination({
   paginationBgColor,
   paginationActiveTextColor,
   paginationTextColor,
+  previousLabel = "Previous page",
+  nextLabel = "Next page",
 }) {
   return (
     <div className="datatable__pagination">
@@ -18,7 +30,7 @@ function DataTablePagination({
         className="datatable__pagination-btn"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        aria-label="Previous page"
+        aria-label={previousLabel}
         style={{ color: paginationTextColor }}
       >
         <svg
@@ -61,7 +73,7 @@ function DataTablePagination({
         className="datatable__pagination-btn"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        aria-label="Next page"
+        aria-label={nextLabel}
         style={{ color: paginationTextColor }}
       >
         <svg
@@ -91,6 +103,8 @@ DataTablePagination.propTypes = {
   paginationBgColor: PropTypes.string,
   paginationActiveTextColor: PropTypes.string,
   paginationTextColor: PropTypes.string,
+  previousLabel: PropTypes.string,
+  nextLabel: PropTypes.string,
 };
 
 export default DataTablePagination;
