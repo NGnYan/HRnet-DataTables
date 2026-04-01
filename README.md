@@ -225,6 +225,33 @@ These props allow you to add edit and delete buttons on each row. The column onl
  
 > **Note:** The `row` parameter contains all the data of the clicked row, including the `id` field.
 
+### Accessibility
+
+These props allow you to customize the accessible labels for screen readers. All have default values in English.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `tableLabel` | `string` | `"Data table"` | Accessible label for the table |
+| `searchLabel` | `string` | `"Search"` | Accessible label for the search input |
+| `sortByLabel` | `string` | `"Sort by column"` | Accessible label for the sort dropdown |
+| `toggleDirectionLabel` | `string` | `"Switch sort order"` | Accessible label for the sort direction button |
+| `editLabel` | `string` | `"Edit"` | Accessible label for the edit button |
+| `deleteLabel` | `string` | `"Delete"` | Accessible label for the delete button |
+| `previousLabel` | `string` | `"Previous page"` | Accessible label for the previous page button |
+| `nextLabel` | `string` | `"Next page"` | Accessible label for the next page button |
+
+```jsx
+<DataTable
+  columns={columns}
+  data={data}
+  tableLabel="Employees list"
+  editLabel="Edit employee"
+  deleteLabel="Delete employee"
+  previousLabel="Previous page"
+  nextLabel="Next page"
+/>
+```
+
 ## Examples
 
 ### Basic table
