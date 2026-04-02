@@ -6,7 +6,7 @@ import DataTableSortDropdown from "./components/DataTableSortDropdown";
 import DataTableSearch from "./components/DataTableSearch";
 import DataTablePagination from "./components/DataTablePagination";
 import { filterData, sortData, paginateData } from "./utils.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /**
  * Main DataTable component that displays data in a table.
@@ -81,6 +81,10 @@ export function DataTable({
   const [sortDirection, setSortDirection] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchText]);
 
   if (!columns || columns.length === 0) {
     return <p>No columns defined.</p>;
