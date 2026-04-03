@@ -1,5 +1,6 @@
 # @ngnyan/data-table
 ![npm](https://img.shields.io/npm/v/@ngnyan/data-table)
+[![npm](https://img.shields.io/npm/v/@ngnyan/data-table)](https://www.npmjs.com/package/@ngnyan/data-table)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
 A customizable and accessible React data table component with sorting, searching, and action buttons.
