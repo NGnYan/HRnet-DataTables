@@ -1,6 +1,6 @@
 {
   "name": "@ngnyan/data-table",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "A customizable and accessible React data table component with sorting, searching, pagination and action buttons.",
   "author": "NGnYan",
   "keywords": [
